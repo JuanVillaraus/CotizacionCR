@@ -1,0 +1,17 @@
+ARTROSCOPIA (Cirugia Mayor, Ligamentos y Ligamento Cruzado). A INSTITUCIONAL  PRIV.
+ARTROSCOPIA (Cirugia Mayor, Ligamentos y Ligamento Cruzado). B INSTITUCIONAL  PRIV.
+ARTROSCOPIA (Cirugia Mayor, Ligamentos y Ligamento Cruzado). B INSTITUCIONAL  SEMI.
+ARTROSCOPIA (Cirugia Mayor, Ligamentos y Ligamento Cruzado). C INSTITUCIONAL  PRIV.
+ARTROSCOPIA (Cirugia Mayor, Ligamentos y Ligamento Cruzado). C INSTITUCIONAL  SEMI.
+ARTROSCOPIA (Lesion de menisco y cartilago). A INSTITUCIONAL  PRIV.
+ARTROSCOPIA (Lesion de menisco y cartilago). A INSTITUCIONAL  SEMI.
+ARTROSCOPIA (Lesion de menisco y cartilago). B INSTITUCIONAL  PRIV.
+ARTROSCOPIA (Lesion de menisco y cartilago). B INSTITUCIONAL  SEMI.
+ARTROSCOPIA (Lesion de menisco y cartilago). C INSTITUCIONAL  PRIV.
+ARTROSCOPIA (Lesion de menisco y cartilago). C INSTITUCIONAL  SEMI.
+ARTROSCOPIA (Sinovitis, limpieza articular). A INSTITUCIONAL  PRIV.
+ARTROSCOPIA (Sinovitis, limpieza articular). A INSTITUCIONAL  SEMI.
+ARTROSCOPIA (Sinovitis, limpieza articular). B INSTITUCIONAL  PRIV.
+ARTROSCOPIA (Sinovitis, limpieza articular). B INSTITUCIONAL  SEMI.
+ARTROSCOPIA (Sinovitis, limpieza articular). C INSTITUCIONAL  PRIV.
+ARTROSCOPIA (Sinovitis, limpieza articular). C INSTITUCIONAL  SEMI.

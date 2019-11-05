@@ -8,10 +8,16 @@ package cotizacion;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.logging.*;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xwpf.usermodel.*;
+//import org.apache.poi.hwpf.HWPFDocument;
+//import org.apache.poi.hwpf.usermodel.*;
+//import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 /**
  *
@@ -271,5 +277,54 @@ public class Archivo {
             Logger.getLogger(Archivo.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println("written successfully");
+    }
+
+    public void replaceWordData(String dir, String findText, String replaceText) {
+        XWPFDocument doc;
+        try {
+            try {
+                doc = new XWPFDocument(OPCPackage.open(dir));
+                for (XWPFParagraph p : doc.getParagraphs()) {
+                    List<XWPFRun> runs = p.getRuns();
+                    if (runs != null) {
+                        for (XWPFRun r : runs) {
+                            String text = r.getText(0);
+                            if (text != null && text.contains(findText)) {
+                                text = text.replace(findText, replaceText);
+                                System.out.println("text: " + text);
+                                r.setText(text, 0);
+                            }
+                        }
+                    }
+                }
+                for (XWPFTable tbl : doc.getTables()) {
+                    for (XWPFTableRow row : tbl.getRows()) {
+                        for (XWPFTableCell cell : row.getTableCells()) {
+                            for (XWPFParagraph p : cell.getParagraphs()) {
+                                for (XWPFRun r : p.getRuns()) {
+                                    String text = r.getText(0);
+                                    if (text.contains(findText)) {
+                                        text = text.replace(findText, replaceText);
+                                        System.out.println("text: " + text);
+                                        r.setText(text, 0);
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                try {
+                    doc.write(new FileOutputStream("resource/Orden de cirugia.docx"));
+                } catch (IOException ex) {
+                    Logger.getLogger(Archivo.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (InvalidFormatException ex) {
+                Logger.getLogger(Archivo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Archivo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }
