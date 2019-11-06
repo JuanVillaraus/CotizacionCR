@@ -15,9 +15,6 @@ import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xwpf.usermodel.*;
-//import org.apache.poi.hwpf.HWPFDocument;
-//import org.apache.poi.hwpf.usermodel.*;
-//import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 /**
  *
@@ -152,23 +149,6 @@ public class Archivo {
         }
     }
 
-//    public void writeExcelData(String dir, String nameSheet, String[] data) {
-//        //create blank workbook
-//        HSSFWorkbook workbook = new HSSFWorkbook();
-//        HSSFSheet spreadsheet = workbook.createSheet(nameSheet);
-//        try {
-//            HSSFRow row = spreadsheet.createRow(0);
-//            Cell cell = row.createCell(0);
-//            String result = data[0] + " " + data[1] + " " + data[2];
-//            cell.setCellValue(result);
-//            FileOutputStream out = new FileOutputStream(new File(dir));
-//            workbook.write(out);
-//            out.close();
-//        } catch (Exception e) {
-//            System.out.println("Error: " + e);
-//        }
-//        System.out.println("createworkbook.xls created!");
-//    }
     public void writeExcelData(String dir, String nameSheet, String[][] data) {
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet worksheet = workbook.createSheet(nameSheet);
