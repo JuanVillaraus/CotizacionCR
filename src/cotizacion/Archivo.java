@@ -279,7 +279,7 @@ public class Archivo {
         System.out.println("written successfully");
     }
 
-    public void replaceWordData(String dir, String findText, String replaceText) {
+    public void replaceWordData(String dir, String name, String findText, String replaceText) {
         XWPFDocument doc;
         try {
             try {
@@ -307,7 +307,7 @@ public class Archivo {
                                         text = text.replace(findText, replaceText);
                                         System.out.println("text: " + text);
                                         r.setText(text, 0);
-                                        
+
                                     }
                                 }
                             }
@@ -315,10 +315,75 @@ public class Archivo {
                     }
                 }
                 try {
-                    doc.write(new FileOutputStream("resource/Orden de cirugia.docx"));
+                    doc.write(new FileOutputStream(name));
                 } catch (IOException ex) {
                     Logger.getLogger(Archivo.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            } catch (InvalidFormatException ex) {
+                Logger.getLogger(Archivo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Archivo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void replaceWordData(String dir, String name, String[][] data) {
+        System.out.println("replaceWordData");
+        XWPFDocument doc;
+        try {
+            try {
+                doc = new XWPFDocument(OPCPackage.open(dir));
+                for (int i = 0; i < data.length; i++) {
+                    System.out.println("data: " + data[i][0] + "\t" + data[i][1]);
+                    for (XWPFParagraph p : doc.getParagraphs()) {
+                        List<XWPFRun> runs = p.getRuns();
+                        if (runs != null) {
+                            for (XWPFRun r : runs) {
+                                String text = r.getText(0);
+                                if (text != null && text.contains(data[i][0])) {
+                                    text = text.replace(data[i][0], data[i][1]);
+                                    r.setText(text, 0);
+                                    System.out.println("change: " + text);
+                                }
+                            }
+                        }
+                    }
+                    for (XWPFTable tbl : doc.getTables()) {
+                        for (XWPFTableRow row : tbl.getRows()) {
+                            for (XWPFTableCell cell : row.getTableCells()) {
+                                for (XWPFParagraph p : cell.getParagraphs()) {
+                                    for (XWPFRun r : p.getRuns()) {
+                                        String text = r.getText(0);
+                                        if (text.contains(data[i][0])) {
+                                            text = text.replace(data[i][0], data[i][1]);
+                                            r.setText(text, 0);
+                                            System.out.println("change: " + text);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+//                    doc.write(new FileOutputStream(name));
+                File file;
+                file = new File(name);
+                try (FileOutputStream fileOuS = new FileOutputStream(file)) {
+                    if (file.exists()) {// si el archivo existe se elimina
+                        file.delete();
+                        System.out.println("Archivo eliminado");
+                    }
+                    doc.write(fileOuS);
+                    fileOuS.flush();
+                    fileOuS.close();
+                    System.out.println("Archivo Creado");
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("done");
             } catch (InvalidFormatException ex) {
                 Logger.getLogger(Archivo.class.getName()).log(Level.SEVERE, null, ex);
             }
