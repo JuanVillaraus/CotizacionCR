@@ -11,6 +11,9 @@ import java.text.*;
 import java.util.*;
 import javax.swing.*;
 import com.mxrck.autocompleter.TextAutoCompleter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,13 +22,13 @@ import com.mxrck.autocompleter.TextAutoCompleter;
 public class Interface extends JFrame implements ActionListener {
 
     Archivo a = new Archivo();
-    SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-    SimpleDateFormat time = new SimpleDateFormat("hh:mm:ss");
+    SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
+    SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss");
     JTextField tMedic = new JTextField(30);
     JTextField tCedula = new JTextField(30);
     JTextField tPatient = new JTextField(30);
-    JTextField tSolicitante = new JTextField(30);
-    JTextField tDiacnostic = new JTextField(30);
+    JTextField tManager = new JTextField(30);
+    JTextField tDiagnostic = new JTextField(30);
     JTextField tSurgery1 = new JTextField(30);
     JTextField tSurgery2 = new JTextField(30);
     JTextField tSurgery3 = new JTextField(30);
@@ -36,16 +39,16 @@ public class Interface extends JFrame implements ActionListener {
     JTextField tSurgery8 = new JTextField(30);
     JTextField tSurgery9 = new JTextField(30);
     JMenu mDepartment = new JMenu("Especialidad");
-    JMenu mSurgery1 = new JMenu("Cirugia");
-    JMenu mSurgery2 = new JMenu("Cirugia");
-    JMenu mSurgery3 = new JMenu("Cirugia");
-    JMenu mSurgery4 = new JMenu("Cirugia");
-    JMenu mSurgery5 = new JMenu("Cirugia");
-    JMenu mSurgery6 = new JMenu("Cirugia");
-    JMenu mSurgery7 = new JMenu("Cirugia");
-    JMenu mSurgery8 = new JMenu("Cirugia");
-    JMenu mSurgery9 = new JMenu("Cirugia");
-    JMenu mSurgeryTipe = new JMenu("Tipo de Cirugia");
+    JMenu mSurgery1 = new JMenu("Cirugía");
+    JMenu mSurgery2 = new JMenu("Cirugía");
+    JMenu mSurgery3 = new JMenu("Cirugía");
+    JMenu mSurgery4 = new JMenu("Cirugía");
+    JMenu mSurgery5 = new JMenu("Cirugía");
+    JMenu mSurgery6 = new JMenu("Cirugía");
+    JMenu mSurgery7 = new JMenu("Cirugía");
+    JMenu mSurgery8 = new JMenu("Cirugía");
+    JMenu mSurgery9 = new JMenu("Cirugía");
+    JMenu mSurgeryTipe = new JMenu("Tipo de Cirugía");
     JMenu mAnesthesia = new JMenu("Tipo de Anestesia");
     JCheckBox cTeam1 = new JCheckBox("Anestesiólogo");
     JCheckBox cTeam2 = new JCheckBox("Cirujano");
@@ -72,21 +75,19 @@ public class Interface extends JFrame implements ActionListener {
         this.setIconImage(Toolkit.getDefaultToolkit().getImage("resource/cruzroja.png"));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(400, 720);
-        //this.setExtendedState(MAXIMIZED_BOTH);
-        this.setVisible(true);
         this.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width / 2) - this.getWidth() / 2,
                 (Toolkit.getDefaultToolkit().getScreenSize().height * 2 / 5) - this.getHeight() / 2);
         this.setTitle("Cotización");
 
         JPanel mainPanel = new JPanel();
         JButton bSend = new JButton("Enviar");
-        JLabel lMedic = new JLabel("Medico");
-        JLabel lCedula = new JLabel("  Cedula  ");
+        JLabel lMedic = new JLabel("Médico");
+        JLabel lCedula = new JLabel("  Cédula  ");
         JLabel lPatient = new JLabel("Paciente");
-        JLabel lSolicitante = new JLabel("Solicitante");
-        JLabel lDiacnostic = new JLabel("Diacnostico");
+        JLabel lManager = new JLabel("Responsable en Admisión Hospitalaria");
+        JLabel lDiagnostic = new JLabel("Diagnóstico");
         JLabel lTime = new JLabel("Estancia sugerida en días");
-        JLabel lEquipement = new JLabel("Equipo electromédco adicional");
+        JLabel lEquipement = new JLabel("Equipo electromédico adicional");
         JLabel lNote = new JLabel("Observaciones");
         JMenuBar mBarDepartment = new JMenuBar();
         JMenuBar mBarSurgery1 = new JMenuBar();
@@ -100,15 +101,15 @@ public class Interface extends JFrame implements ActionListener {
         JMenuBar mBarSurgery9 = new JMenuBar();
         JMenuBar mBarSurgeryTipe = new JMenuBar();
         JMenuBar mBarAnesthesia = new JMenuBar();
-        JMenuItem iDepartment1 = new JMenuItem("CIRUGIA GENERAL");
-        JMenuItem iDepartment2 = new JMenuItem("GINECOLOGIA Y OBSTETRICA");
-        JMenuItem iDepartment3 = new JMenuItem("ORTOPEDIA Y TRAUMATOLOGIA");
-        JMenuItem iDepartment4 = new JMenuItem("OTORRINOLARINGOLOGIA");
-        JMenuItem iDepartment5 = new JMenuItem("UROLOGIA");
-        JMenuItem iDepartment6 = new JMenuItem("OFTALMOLOGIA");
+        JMenuItem iDepartment1 = new JMenuItem("CIRUGÍA GENERAL");
+        JMenuItem iDepartment2 = new JMenuItem("GINECOLOGÍA Y OBSTETRICA");
+        JMenuItem iDepartment3 = new JMenuItem("ORTOPEDIA Y TRAUMATOLOGÍA");
+        JMenuItem iDepartment4 = new JMenuItem("OTORRINOLARINGOLOGÍA");
+        JMenuItem iDepartment5 = new JMenuItem("UROLOGÍA");
+        JMenuItem iDepartment6 = new JMenuItem("OFTALMOLOGÍA");
         JMenuItem iDepartment7 = new JMenuItem("ARTROSCOPIA");
         JMenuItem iDepartment8 = new JMenuItem("ORTODONCIA");
-        JMenuItem iDepartment9 = new JMenuItem("CIRUGIA MAXILOFACIAL");
+        JMenuItem iDepartment9 = new JMenuItem("CIRUGÍA MAXILOFACIAL");
         JMenuItem iSurgeryTipe1 = new JMenuItem("Ordinario");
         JMenuItem iSurgeryTipe2 = new JMenuItem("Urgente");
         JMenuItem iAnesthesia1 = new JMenuItem("General");
@@ -177,15 +178,15 @@ public class Interface extends JFrame implements ActionListener {
         cTeam5.setPreferredSize(new Dimension(165, 20));
         cTeam6.setPreferredSize(new Dimension(165, 20));
         cTeam7.setPreferredSize(new Dimension(330, 20));
-        mSurgery1.setVisible(false);
-        mSurgery2.setVisible(false);
-        mSurgery3.setVisible(false);
-        mSurgery4.setVisible(false);
-        mSurgery5.setVisible(false);
-        mSurgery6.setVisible(false);
-        mSurgery7.setVisible(false);
-        mSurgery8.setVisible(false);
-        mSurgery9.setVisible(false);
+//        mSurgery1.setVisible(false);
+//        mSurgery2.setVisible(false);
+//        mSurgery3.setVisible(false);
+//        mSurgery4.setVisible(false);
+//        mSurgery5.setVisible(false);
+//        mSurgery6.setVisible(false);
+//        mSurgery7.setVisible(false);
+//        mSurgery8.setVisible(false);
+//        mSurgery9.setVisible(false);
         tSurgery1.setVisible(false);
         tSurgery2.setVisible(false);
         tSurgery3.setVisible(false);
@@ -211,12 +212,12 @@ public class Interface extends JFrame implements ActionListener {
         mainPanel.add(tMedic);
         mainPanel.add(lCedula);
         mainPanel.add(tCedula);
+        mainPanel.add(lManager);
+        mainPanel.add(tManager);
         mainPanel.add(lPatient);
         mainPanel.add(tPatient);
-        mainPanel.add(lSolicitante);
-        mainPanel.add(tSolicitante);
-        mainPanel.add(lDiacnostic);
-        mainPanel.add(tDiacnostic);
+        mainPanel.add(lDiagnostic);
+        mainPanel.add(tDiagnostic);
         mainPanel.add(mBarDepartment);
         mainPanel.add(tSurgery1);
         mainPanel.add(tSurgery2);
@@ -244,13 +245,15 @@ public class Interface extends JFrame implements ActionListener {
         mainPanel.add(tNote);
         mainPanel.add(bSend);
         this.add(mainPanel);
+        
+        this.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().getClass().getSimpleName().equals("JMenuItem")) {
             switch (e.getActionCommand()) {
-                case "CIRUGIA GENERAL":
+                case "CIRUGÍA GENERAL":
                     tSurgery1.setVisible(true);
                     tSurgery2.setVisible(false);
                     tSurgery3.setVisible(false);
@@ -262,7 +265,7 @@ public class Interface extends JFrame implements ActionListener {
                     tSurgery9.setVisible(false);
                     mDepartment.setText(e.getActionCommand());
                     break;
-                case "GINECOLOGIA Y OBSTETRICA":
+                case "GINECOLOGÍA Y OBSTETRICA":
                     tSurgery1.setVisible(false);
                     tSurgery2.setVisible(true);
                     tSurgery3.setVisible(false);
@@ -274,7 +277,7 @@ public class Interface extends JFrame implements ActionListener {
                     tSurgery9.setVisible(false);
                     mDepartment.setText(e.getActionCommand());
                     break;
-                case "ORTOPEDIA Y TRAUMATOLOGIA":
+                case "ORTOPEDIA Y TRAUMATOLOGÍA":
                     tSurgery1.setVisible(false);
                     tSurgery2.setVisible(false);
                     tSurgery3.setVisible(true);
@@ -286,7 +289,7 @@ public class Interface extends JFrame implements ActionListener {
                     tSurgery9.setVisible(false);
                     mDepartment.setText(e.getActionCommand());
                     break;
-                case "OTORRINOLARINGOLOGIA":
+                case "OTORRINOLARINGOLOGÍA":
                     tSurgery1.setVisible(false);
                     tSurgery2.setVisible(false);
                     tSurgery3.setVisible(false);
@@ -298,7 +301,7 @@ public class Interface extends JFrame implements ActionListener {
                     tSurgery9.setVisible(false);
                     mDepartment.setText(e.getActionCommand());
                     break;
-                case "UROLOGIA":
+                case "UROLOGÍA":
                     tSurgery1.setVisible(false);
                     tSurgery2.setVisible(false);
                     tSurgery3.setVisible(false);
@@ -310,7 +313,7 @@ public class Interface extends JFrame implements ActionListener {
                     tSurgery9.setVisible(false);
                     mDepartment.setText(e.getActionCommand());
                     break;
-                case "OFTALMOLOGIA":
+                case "OFTALMOLOGÍA":
                     tSurgery1.setVisible(false);
                     tSurgery2.setVisible(false);
                     tSurgery3.setVisible(false);
@@ -346,7 +349,7 @@ public class Interface extends JFrame implements ActionListener {
                     tSurgery9.setVisible(false);
                     mDepartment.setText(e.getActionCommand());
                     break;
-                case "CIRUGIA MAXILOFACIAL":
+                case "CIRUGÍA MAXILOFACIAL":
                     tSurgery1.setVisible(false);
                     tSurgery2.setVisible(false);
                     tSurgery3.setVisible(false);
@@ -370,22 +373,22 @@ public class Interface extends JFrame implements ActionListener {
                     break;
                 default:
                     switch (mDepartment.getText()) {
-                        case "CIRUGIA GENERAL":
+                        case "CIRUGÍA GENERAL":
                             mSurgery1.setText(e.getActionCommand());
                             break;
-                        case "GINECOLOGIA Y OBSTETRICA":
+                        case "GINECOLOGÍA Y OBSTETRICA":
                             mSurgery2.setText(e.getActionCommand());
                             break;
-                        case "ORTOPEDIA Y TRAUMATOLOGIA":
+                        case "ORTOPEDIA Y TRAUMATOLOGÍA":
                             mSurgery3.setText(e.getActionCommand());
                             break;
-                        case "OTORRINOLARINGOLOGIA":
+                        case "OTORRINOLARINGOLOGÍA":
                             mSurgery4.setText(e.getActionCommand());
                             break;
-                        case "UROLOGIA":
+                        case "UROLOGÍA":
                             mSurgery5.setText(e.getActionCommand());
                             break;
-                        case "OFTALMOLOGIA":
+                        case "OFTALMOLOGÍA":
                             mSurgery6.setText(e.getActionCommand());
                             break;
                         case "ARTROSCOPIA":
@@ -394,7 +397,7 @@ public class Interface extends JFrame implements ActionListener {
                         case "ORTODONCIA":
                             mSurgery8.setText(e.getActionCommand());
                             break;
-                        case "CIRUGIA MAXILOFACIAL":
+                        case "CIRUGÍA MAXILOFACIAL":
                             mSurgery9.setText(e.getActionCommand());
                             break;
                     }
@@ -420,27 +423,27 @@ public class Interface extends JFrame implements ActionListener {
             data[0][1] = tMedic.getText();
             data[1][1] = tCedula.getText();
             data[2][1] = tPatient.getText();
-            data[3][1] = tSolicitante.getText();
+            data[3][1] = tManager.getText();
             data[4][1] = date.format(calendario.getTime());
-            data[5][1] = tDiacnostic.getText();
+            data[5][1] = tDiagnostic.getText();
             data[6][1] = mDepartment.getText();
             switch (mDepartment.getText()) {
-                case "CIRUGIA GENERAL":
+                case "CIRUGÍA GENERAL":
                     data[7][1] = tSurgery1.getText();
                     break;
-                case "GINECOLOGIA Y OBSTETRICA":
+                case "GINECOLOGÍA Y OBSTETRICA":
                     data[7][1] = tSurgery2.getText();
                     break;
-                case "ORTOPEDIA Y TRAUMATOLOGIA":
+                case "ORTOPEDIA Y TRAUMATOLOGÍA":
                     data[7][1] = tSurgery3.getText();
                     break;
-                case "OTORRINOLARINGOLOGIA":
+                case "OTORRINOLARINGOLOGÍA":
                     data[7][1] = tSurgery4.getText();
                     break;
-                case "UROLOGIA":
+                case "UROLOGÍA":
                     data[7][1] = tSurgery5.getText();
                     break;
-                case "OFTALMOLOGIA":
+                case "OFTALMOLOGÍA":
                     data[7][1] = tSurgery6.getText();
                     break;
                 case "ARTROSCOPIA":
@@ -449,7 +452,7 @@ public class Interface extends JFrame implements ActionListener {
                 case "ORTODONCIA":
                     data[7][1] = tSurgery8.getText();
                     break;
-                case "CIRUGIA MAXILOFACIAL":
+                case "CIRUGÍA MAXILOFACIAL":
                     data[7][1] = tSurgery9.getText();
                     break;
             }
@@ -482,11 +485,49 @@ public class Interface extends JFrame implements ActionListener {
             data[12][1] = tEquipement.getText();
             data[13][1] = tNote.getText();
             System.out.println("enviar");
-            a.replaceWordData("resource/formatoOrdenCirugia.docx", "resource/Orden de Cirugia "
+            a.replaceWordData("resource/formatoOrdenCirugia.docx", "C:/CotizacionCR/Orden de Cirugia "
                     + tPatient.getText() + " " + date.format(calendario.getTime())
                     + ".docx", data);
+            try {
+                Runtime.getRuntime().exec("cmd /c start C:\\CotizacionCR\\Orden\" de Cirugia " + tPatient.getText() 
+                        + " " + date.format(calendario.getTime()) + "\".docx");
+            } catch (IOException ex) {
+                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            tPatient.setText(null);
+            tDiagnostic.setText(null);
+            mDepartment.setText("Especialidad");
+            tSurgery1.setText(null);
+            tSurgery2.setText(null);
+            tSurgery3.setText(null);
+            tSurgery4.setText(null);
+            tSurgery5.setText(null);
+            tSurgery6.setText(null);
+            tSurgery7.setText(null);
+            tSurgery8.setText(null);
+            tSurgery9.setText(null);
+            tSurgery1.setVisible(false);
+            tSurgery2.setVisible(false);
+            tSurgery3.setVisible(false);
+            tSurgery4.setVisible(false);
+            tSurgery5.setVisible(false);
+            tSurgery6.setVisible(false);
+            tSurgery7.setVisible(false);
+            tSurgery8.setVisible(false);
+            tSurgery9.setVisible(false);
+            mSurgeryTipe.setText("Tipo de Cirugía");
+            mAnesthesia.setText("Tipo de Anestesia");
+            cTeam1.setSelected(false);
+            cTeam2.setSelected(false);
+            cTeam3.setSelected(false);
+            cTeam4.setSelected(false);
+            cTeam5.setSelected(false);
+            cTeam6.setSelected(false);
+            cTeam7.setSelected(false);  
+            tTime.setText(null);
+            tEquipement.setText(null);
+            tNote.setText(null);
         }
-        //a.replaceWordData("resource/formatoOrdenCirugia.docx","[fecha]","19-10-19");
     }
 
     public void updateMenu() {
