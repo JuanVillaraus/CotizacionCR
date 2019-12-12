@@ -38,6 +38,7 @@ public class Interface extends JFrame implements ActionListener {
     JTextField tSurgery7 = new JTextField(30);
     JTextField tSurgery8 = new JTextField(30);
     JTextField tSurgery9 = new JTextField(30);
+    JTextField tSurgery10 = new JTextField(30);
     JMenu mDepartment = new JMenu("Especialidad");
     JMenu mSurgery1 = new JMenu("Cirugía");
     JMenu mSurgery2 = new JMenu("Cirugía");
@@ -53,9 +54,9 @@ public class Interface extends JFrame implements ActionListener {
     JCheckBox cTeam1 = new JCheckBox("Anestesiólogo");
     JCheckBox cTeam2 = new JCheckBox("Cirujano");
     JCheckBox cTeam3 = new JCheckBox("Instrumentista");
-    JCheckBox cTeam4 = new JCheckBox("1er ayudante");
-    JCheckBox cTeam5 = new JCheckBox("2do ayudante");
-    JCheckBox cTeam6 = new JCheckBox("3er ayudante");
+    JCheckBox cTeam4 = new JCheckBox("1er_ayudante");
+    JCheckBox cTeam5 = new JCheckBox("2do_ayudante");
+    JCheckBox cTeam6 = new JCheckBox("3er_ayudante");
     JCheckBox cTeam7 = new JCheckBox("Pediadra");
     JTextField tTime = new JTextField(30);
     JTextField tEquipement = new JTextField(30);
@@ -70,6 +71,7 @@ public class Interface extends JFrame implements ActionListener {
     TextAutoCompleter autoSurgery7;
     TextAutoCompleter autoSurgery8;
     TextAutoCompleter autoSurgery9;
+    TextAutoCompleter autoSurgery10;
 
     public Interface() {
         this.setIconImage(Toolkit.getDefaultToolkit().getImage("resource/cruzroja.png"));
@@ -110,6 +112,7 @@ public class Interface extends JFrame implements ActionListener {
         JMenuItem iDepartment7 = new JMenuItem("ARTROSCOPIA");
         JMenuItem iDepartment8 = new JMenuItem("ORTODONCIA");
         JMenuItem iDepartment9 = new JMenuItem("CIRUGÍA MAXILOFACIAL");
+        JMenuItem iDepartment10 = new JMenuItem("ENDOS");
         JMenuItem iSurgeryTipe1 = new JMenuItem("Ordinario");
         JMenuItem iSurgeryTipe2 = new JMenuItem("Urgente");
         JMenuItem iAnesthesia1 = new JMenuItem("General");
@@ -126,6 +129,7 @@ public class Interface extends JFrame implements ActionListener {
         iDepartment7.addActionListener(this);
         iDepartment8.addActionListener(this);
         iDepartment9.addActionListener(this);
+        iDepartment10.addActionListener(this);
         iSurgeryTipe1.addActionListener(this);
         iSurgeryTipe2.addActionListener(this);
         iAnesthesia1.addActionListener(this);
@@ -141,6 +145,7 @@ public class Interface extends JFrame implements ActionListener {
         mDepartment.add(iDepartment7);
         mDepartment.add(iDepartment8);
         mDepartment.add(iDepartment9);
+        mDepartment.add(iDepartment10);
         mSurgeryTipe.add(iSurgeryTipe1);
         mSurgeryTipe.add(iSurgeryTipe2);
         mAnesthesia.add(iAnesthesia1);
@@ -158,7 +163,10 @@ public class Interface extends JFrame implements ActionListener {
         mBarSurgery6.add(mSurgery6);
         mBarSurgery7.add(mSurgery7);
         mBarSurgery8.add(mSurgery8);
-        mBarSurgery9.add(mSurgery9);
+        mBarSurgery9.add(mSurgery9);JScrollPane scroll = new JScrollPane();
+        scroll.setViewportView(tNote);
+        tNote.setLineWrap(true);
+        tNote.setWrapStyleWord(true);
         mDepartment.setPreferredSize(new Dimension(330, 20));
         mSurgery1.setPreferredSize(new Dimension(330, 20));
         mSurgery2.setPreferredSize(new Dimension(330, 20));
@@ -169,8 +177,24 @@ public class Interface extends JFrame implements ActionListener {
         mSurgery7.setPreferredSize(new Dimension(330, 20));
         mSurgery8.setPreferredSize(new Dimension(330, 20));
         mSurgery9.setPreferredSize(new Dimension(330, 20));
-        mSurgeryTipe.setPreferredSize(new Dimension(330, 20));
+        mSurgeryTipe.setPreferredSize(new Dimension(330, 20));//i'm one of your fans from México
         mAnesthesia.setPreferredSize(new Dimension(330, 20));
+        iDepartment1.setPreferredSize(new Dimension(330, 20));
+        iDepartment2.setPreferredSize(new Dimension(330, 20));
+        iDepartment3.setPreferredSize(new Dimension(330, 20));
+        iDepartment4.setPreferredSize(new Dimension(330, 20));
+        iDepartment5.setPreferredSize(new Dimension(330, 20));
+        iDepartment6.setPreferredSize(new Dimension(330, 20));
+        iDepartment7.setPreferredSize(new Dimension(330, 20));
+        iDepartment8.setPreferredSize(new Dimension(330, 20));
+        iDepartment9.setPreferredSize(new Dimension(330, 20));
+        iDepartment10.setPreferredSize(new Dimension(330, 20));
+        iSurgeryTipe1.setPreferredSize(new Dimension(330, 20));
+        iSurgeryTipe2.setPreferredSize(new Dimension(330, 20));
+        iAnesthesia1.setPreferredSize(new Dimension(330, 20));
+        iAnesthesia2.setPreferredSize(new Dimension(330, 20));
+        iAnesthesia3.setPreferredSize(new Dimension(330, 20));
+        iAnesthesia4.setPreferredSize(new Dimension(330, 20));
         cTeam1.setPreferredSize(new Dimension(165, 20));
         cTeam2.setPreferredSize(new Dimension(165, 20));
         cTeam3.setPreferredSize(new Dimension(165, 20));
@@ -196,6 +220,7 @@ public class Interface extends JFrame implements ActionListener {
         tSurgery7.setVisible(false);
         tSurgery8.setVisible(false);
         tSurgery9.setVisible(false);
+        tSurgery10.setVisible(false);
         autoSurgery1 = new TextAutoCompleter(tSurgery1);
         autoSurgery2 = new TextAutoCompleter(tSurgery2);
         autoSurgery3 = new TextAutoCompleter(tSurgery3);
@@ -205,6 +230,7 @@ public class Interface extends JFrame implements ActionListener {
         autoSurgery7 = new TextAutoCompleter(tSurgery7);
         autoSurgery8 = new TextAutoCompleter(tSurgery8);
         autoSurgery9 = new TextAutoCompleter(tSurgery9);
+        autoSurgery10 = new TextAutoCompleter(tSurgery10);
         autoSurgery1.setMode(0);
         updateMenu();
 
@@ -228,6 +254,7 @@ public class Interface extends JFrame implements ActionListener {
         mainPanel.add(tSurgery7);
         mainPanel.add(tSurgery8);
         mainPanel.add(tSurgery9);
+        mainPanel.add(tSurgery10);
         mainPanel.add(mBarSurgeryTipe);
         mainPanel.add(mBarAnesthesia);
         mainPanel.add(cTeam1);
@@ -242,7 +269,7 @@ public class Interface extends JFrame implements ActionListener {
         mainPanel.add(lEquipement);
         mainPanel.add(tEquipement);
         mainPanel.add(lNote);
-        mainPanel.add(tNote);
+        mainPanel.add(scroll, BorderLayout.CENTER);
         mainPanel.add(bSend);
         this.add(mainPanel);
         
@@ -263,6 +290,7 @@ public class Interface extends JFrame implements ActionListener {
                     tSurgery7.setVisible(false);
                     tSurgery8.setVisible(false);
                     tSurgery9.setVisible(false);
+                    tSurgery10.setVisible(false);
                     mDepartment.setText(e.getActionCommand());
                     break;
                 case "GINECOLOGÍA Y OBSTETRICA":
@@ -275,6 +303,7 @@ public class Interface extends JFrame implements ActionListener {
                     tSurgery7.setVisible(false);
                     tSurgery8.setVisible(false);
                     tSurgery9.setVisible(false);
+                    tSurgery10.setVisible(false);
                     mDepartment.setText(e.getActionCommand());
                     break;
                 case "ORTOPEDIA Y TRAUMATOLOGÍA":
@@ -287,6 +316,7 @@ public class Interface extends JFrame implements ActionListener {
                     tSurgery7.setVisible(false);
                     tSurgery8.setVisible(false);
                     tSurgery9.setVisible(false);
+                    tSurgery10.setVisible(false);
                     mDepartment.setText(e.getActionCommand());
                     break;
                 case "OTORRINOLARINGOLOGÍA":
@@ -299,6 +329,7 @@ public class Interface extends JFrame implements ActionListener {
                     tSurgery7.setVisible(false);
                     tSurgery8.setVisible(false);
                     tSurgery9.setVisible(false);
+                    tSurgery10.setVisible(false);
                     mDepartment.setText(e.getActionCommand());
                     break;
                 case "UROLOGÍA":
@@ -311,6 +342,7 @@ public class Interface extends JFrame implements ActionListener {
                     tSurgery7.setVisible(false);
                     tSurgery8.setVisible(false);
                     tSurgery9.setVisible(false);
+                    tSurgery10.setVisible(false);
                     mDepartment.setText(e.getActionCommand());
                     break;
                 case "OFTALMOLOGÍA":
@@ -323,18 +355,20 @@ public class Interface extends JFrame implements ActionListener {
                     tSurgery7.setVisible(false);
                     tSurgery8.setVisible(false);
                     tSurgery9.setVisible(false);
+                    tSurgery10.setVisible(false);
                     mDepartment.setText(e.getActionCommand());
                     break;
                 case "ARTROSCOPIA":
                     tSurgery1.setVisible(false);
                     tSurgery2.setVisible(false);
-                    tSurgery3.setVisible(false);
+                    tSurgery3.setVisible(false);//renewannewithane
                     tSurgery4.setVisible(false);
                     tSurgery5.setVisible(false);
                     tSurgery6.setVisible(false);
                     tSurgery7.setVisible(true);
                     tSurgery8.setVisible(false);
                     tSurgery9.setVisible(false);
+                    tSurgery10.setVisible(false);
                     mDepartment.setText(e.getActionCommand());
                     break;
                 case "ORTODONCIA":
@@ -347,6 +381,7 @@ public class Interface extends JFrame implements ActionListener {
                     tSurgery7.setVisible(false);
                     tSurgery8.setVisible(true);
                     tSurgery9.setVisible(false);
+                    tSurgery10.setVisible(false);
                     mDepartment.setText(e.getActionCommand());
                     break;
                 case "CIRUGÍA MAXILOFACIAL":
@@ -359,6 +394,20 @@ public class Interface extends JFrame implements ActionListener {
                     tSurgery7.setVisible(false);
                     tSurgery8.setVisible(false);
                     tSurgery9.setVisible(true);
+                    tSurgery10.setVisible(false);
+                    mDepartment.setText(e.getActionCommand());
+                    break;
+                case "ENDOS":
+                    tSurgery1.setVisible(false);
+                    tSurgery2.setVisible(false);
+                    tSurgery3.setVisible(false);
+                    tSurgery4.setVisible(false);
+                    tSurgery5.setVisible(false);
+                    tSurgery6.setVisible(false);
+                    tSurgery7.setVisible(false);
+                    tSurgery8.setVisible(false);
+                    tSurgery9.setVisible(false);
+                    tSurgery10.setVisible(true);
                     mDepartment.setText(e.getActionCommand());
                     break;
                 case "Ordinario":
@@ -455,6 +504,9 @@ public class Interface extends JFrame implements ActionListener {
                 case "CIRUGÍA MAXILOFACIAL":
                     data[7][1] = tSurgery9.getText();
                     break;
+                case "ENDOS":
+                    data[7][1] = tSurgery10.getText();
+                    break;
             }
             data[8][1] = mSurgeryTipe.getText();
             data[9][1] = mAnesthesia.getText();
@@ -506,6 +558,7 @@ public class Interface extends JFrame implements ActionListener {
             tSurgery7.setText(null);
             tSurgery8.setText(null);
             tSurgery9.setText(null);
+            tSurgery10.setText(null);
             tSurgery1.setVisible(false);
             tSurgery2.setVisible(false);
             tSurgery3.setVisible(false);
@@ -515,6 +568,7 @@ public class Interface extends JFrame implements ActionListener {
             tSurgery7.setVisible(false);
             tSurgery8.setVisible(false);
             tSurgery9.setVisible(false);
+            tSurgery10.setVisible(false);
             mSurgeryTipe.setText("Tipo de Cirugía");
             mAnesthesia.setText("Tipo de Anestesia");
             cTeam1.setSelected(false);
@@ -539,10 +593,7 @@ public class Interface extends JFrame implements ActionListener {
         word = "";
         for (int i = 0; i < sItems.length(); i++) {
             if (cadena[i] == '\n') {
-                JMenuItem Surgery = new JMenuItem(word);
                 autoSurgery1.addItem(word);
-                mSurgery1.add(Surgery);
-                Surgery.addActionListener(this);
                 word = "";
             } else {
                 word += cadena[i];
@@ -553,10 +604,7 @@ public class Interface extends JFrame implements ActionListener {
         word = "";
         for (int i = 0; i < sItems.length(); i++) {
             if (cadena[i] == '\n') {
-                JMenuItem Surgery = new JMenuItem(word);
                 autoSurgery2.addItem(word);
-                mSurgery2.add(Surgery);
-                Surgery.addActionListener(this);
                 word = "";
             } else {
                 word += cadena[i];
@@ -567,10 +615,7 @@ public class Interface extends JFrame implements ActionListener {
         word = "";
         for (int i = 0; i < sItems.length(); i++) {
             if (cadena[i] == '\n') {
-                JMenuItem Surgery = new JMenuItem(word);
                 autoSurgery3.addItem(word);
-                mSurgery3.add(Surgery);
-                Surgery.addActionListener(this);
                 word = "";
             } else {
                 word += cadena[i];
@@ -581,10 +626,7 @@ public class Interface extends JFrame implements ActionListener {
         word = "";
         for (int i = 0; i < sItems.length(); i++) {
             if (cadena[i] == '\n') {
-                JMenuItem Surgery = new JMenuItem(word);
                 autoSurgery4.addItem(word);
-                mSurgery4.add(Surgery);
-                Surgery.addActionListener(this);
                 word = "";
             } else {
                 word += cadena[i];
@@ -595,10 +637,7 @@ public class Interface extends JFrame implements ActionListener {
         word = "";
         for (int i = 0; i < sItems.length(); i++) {
             if (cadena[i] == '\n') {
-                JMenuItem Surgery = new JMenuItem(word);
                 autoSurgery5.addItem(word);
-                mSurgery5.add(Surgery);
-                Surgery.addActionListener(this);
                 word = "";
             } else {
                 word += cadena[i];
@@ -609,10 +648,7 @@ public class Interface extends JFrame implements ActionListener {
         word = "";
         for (int i = 0; i < sItems.length(); i++) {
             if (cadena[i] == '\n') {
-                JMenuItem Surgery = new JMenuItem(word);
                 autoSurgery6.addItem(word);
-                mSurgery6.add(Surgery);
-                Surgery.addActionListener(this);
                 word = "";
             } else {
                 word += cadena[i];
@@ -623,10 +659,7 @@ public class Interface extends JFrame implements ActionListener {
         word = "";
         for (int i = 0; i < sItems.length(); i++) {
             if (cadena[i] == '\n') {
-                JMenuItem Surgery = new JMenuItem(word);
                 autoSurgery7.addItem(word);
-                mSurgery7.add(Surgery);
-                Surgery.addActionListener(this);
                 word = "";
             } else {
                 word += cadena[i];
@@ -637,10 +670,7 @@ public class Interface extends JFrame implements ActionListener {
         word = "";
         for (int i = 0; i < sItems.length(); i++) {
             if (cadena[i] == '\n') {
-                JMenuItem Surgery = new JMenuItem(word);
                 autoSurgery8.addItem(word);
-                mSurgery8.add(Surgery);
-                Surgery.addActionListener(this);
                 word = "";
             } else {
                 word += cadena[i];
@@ -651,10 +681,18 @@ public class Interface extends JFrame implements ActionListener {
         word = "";
         for (int i = 0; i < sItems.length(); i++) {
             if (cadena[i] == '\n') {
-                JMenuItem Surgery = new JMenuItem(word);
                 autoSurgery9.addItem(word);
-                mSurgery9.add(Surgery);
-                Surgery.addActionListener(this);
+                word = "";
+            } else {
+                word += cadena[i];
+            }
+        }
+        sItems = a.leerTxt("resource/endos.txt");
+        cadena = sItems.toCharArray();
+        word = "";
+        for (int i = 0; i < sItems.length(); i++) {
+            if (cadena[i] == '\n') {
+                autoSurgery10.addItem(word);
                 word = "";
             } else {
                 word += cadena[i];
